@@ -23,7 +23,7 @@ LDFLAGS+=  --out-implib $(LIBRARY).dll.a
  
 ARFLAGS:= crs
 
-INCLUDES= -I. -I../newlib/libc/include -I../zlib
+INCLUDES= -I. -I$(TOOLCHAIN_PATH)/include
 
 LIBS:=  -ldll -lc.dll -lz.dll
 
@@ -50,17 +50,19 @@ OBJECTS =  $(patsubst %.c, %.o, $(SOURCES))
 # targets 
 
 
-all:$(LIBRARY).a $(LIBRARY).dll
+all: $(LIBRARY).a $(LIBRARY).dll
 
-ebox:$(LIBRARY).a $(LIBRARY).dll
+ebox: $(LIBRARY).a $(LIBRARY).dll
 
 $(LIBRARY).a: $(OBJECTS) Makefile
 	$(AR) $(ARFLAGS) $(LIBRARY).a $(OBJECTS)
-	mv -f $(LIBRARY).a $(INSTALLDIR)
 
 $(LIBRARY).dll: libpng16.def $(OBJECTS) Makefile
 	$(LD) $(LDFLAGS) -o $@  libpng16.def $(OBJECTS) $(LIBS)
 	$(STRIP) $@
+
+install: $(LIBRARY).a $(LIBRARY).dll
+	mv -f $(LIBRARY).a $(INSTALLDIR)
 	#sed -f ../newlib/cmd1.sed libpng16.def > mem
 	#sed -f ../newlib/cmd2.sed mem >libpng.inc
 	mv -f $@ ../../bin

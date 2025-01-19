@@ -1,29 +1,27 @@
-# zlib for kolibrios
+# libpng for kolibrios
 
-This is zlib from kolibrios repository.
+This is libpng from kolibrios repository.
 
 ## Build
 
 ### Depends
 
 + newlib
-+ pixman
-+ freetype
 + zlib
 
 ### Build targets
 
 static library:
 ```
-make libcairo2.a
+make liblibpng16.a
 ```
 
 shared library:
 ```
-make cairo2.dll
+make libpng16.dll
 ```
 
 package:
 ```
-make kos-cairo-dev
+make kos-libpng-dev
 ```
