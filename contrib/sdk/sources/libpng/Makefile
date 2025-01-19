@@ -6,7 +6,6 @@ LD = kos32-ld
 STRIP = kos32-strip
 
 
-
 ifeq ($(OS),Windows_NT)
 	TOOLCHAIN_PATH=C:/MinGW/msys/1.0/home/autobuild/tools/win32
 else
@@ -48,8 +47,6 @@ OBJECTS =  $(patsubst %.c, %.o, $(SOURCES))
 
 
 # targets 
-
-
 all: $(LIBRARY).a $(LIBRARY).dll
 
 ebox: $(LIBRARY).a $(LIBRARY).dll
@@ -68,13 +65,8 @@ install: $(LIBRARY).a $(LIBRARY).dll
 	mv -f $@ ../../bin
 	mv -f $(LIBRARY).dll.a $(INSTALLDIR)
 
-
 %.o : %.c Makefile
 	$(CC) $(CFLAGS) $(DEFINES) $(INCLUDES) -o $@ $<
 
 clean: 
 	-rm -f *.o 
-
-
-
-
