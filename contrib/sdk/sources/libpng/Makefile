@@ -5,7 +5,15 @@ AR = kos32-ar
 LD = kos32-ld
 STRIP = kos32-strip
 
-INSTALLDIR ?= /home/autobuild/tools/win32/lib
+
+
+ifeq ($(OS),Windows_NT)
+	TOOLCHAIN_PATH=C:/MinGW/msys/1.0/home/autobuild/tools/win32
+else
+	TOOLCHAIN_PATH=/home/autobuild/tools/win32
+endif
+
+INSTALLDIR ?= $(TOOLCHAIN_PATH)/lib
 
 CFLAGS = -UWIN32 -UWindows -U_WINDOWS -U_WIN32 -U__WIN32__ -c -O2 -fno-ident -fomit-frame-pointer
 
