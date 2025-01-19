@@ -24,7 +24,7 @@ jobs:
       run: sudo apt install kos-newlib kos-zlib-dev
 
     - name: Build
-      run: make liblibpng16.a
+      run: make libpng16.a
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
